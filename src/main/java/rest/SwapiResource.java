@@ -5,7 +5,6 @@
  */
 package rest;
 
-import facade.SwapiFacade;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -28,8 +27,6 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("swapi")
 public class SwapiResource {
-    
-    SwapiFacade sf;
 
     @Context
     private UriInfo context;
