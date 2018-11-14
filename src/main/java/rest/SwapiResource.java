@@ -5,7 +5,11 @@
  */
 package rest;
 
-import facade.swapiFacade;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Scanner;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -23,8 +27,6 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("swapi")
 public class SwapiResource {
-    
-    swapiFacade sf;
 
     @Context
     private UriInfo context;
@@ -40,13 +42,43 @@ public class SwapiResource {
      * @return an instance of java.lang.String
      */
     @GET
-    
-    @Path("{id}")
+    @Path("/person/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getJson(@PathParam("id") String data) {
-        System.out.println("hej");
-        return sf.SwapiURL(data); 
+    public String getSwapiPeople(@PathParam("id") int id) throws MalformedURLException, IOException {
+        URL url = new URL("https://swapi.co/api/people/" + id);
+        System.out.println(url);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("Accept", "application/json;charset=UTF-8");
+        con.setRequestProperty("User-Agent", "server");
+        Scanner scan = new Scanner(con.getInputStream());
+        String jsonStr = null;
+        if (scan.hasNext()) {
+            jsonStr = scan.nextLine();
+        }
+        scan.close();
+        return jsonStr;
     }
+    
+    @GET
+    @Path("/person")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getAllSwapiPeople() throws MalformedURLException, IOException {
+        URL url = new URL("https://swapi.co/api/people/");
+        System.out.println(url);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("Accept", "application/json;charset=UTF-8");
+        con.setRequestProperty("User-Agent", "server");
+        Scanner scan = new Scanner(con.getInputStream());
+        String jsonStr = null;
+        if (scan.hasNext()) {
+            jsonStr = scan.nextLine();
+        }
+        scan.close();
+        return jsonStr;
+    }
+    
 
     /**
      * PUT method for updating or creating an instance of SwapiResource
