@@ -14,8 +14,12 @@ public class swapiFacade {
     private String URL = "https://swapi.co/api/";
     
     
-    public String SwapiURL(String data){
-        return URL + data;
+    public String fetchSwapi(String data){
+        fetch(URL+data).then(response=> {
+    return response.json();
+    }).then(data=>  {
+        console.log(data);
+    }).catch(err => {"Error"});
     }
     
     

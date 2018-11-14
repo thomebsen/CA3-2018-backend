@@ -1,5 +1,6 @@
 package rest;
 
+import java.net.URL;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -42,6 +43,7 @@ public class DemoResource {
     public String getFromAdmin() {
         String user = securityContext.getUserPrincipal().getName();
         return "\"Hello from ADMIN"+ user+"\"";
+        
     }
     
     
