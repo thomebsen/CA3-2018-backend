@@ -5,6 +5,8 @@
  */
 package rest;
 
+import Threads.GetFive;
+import facade.FavoritFacade;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -28,6 +30,8 @@ import javax.ws.rs.core.MediaType;
 @Path("swapi")
 public class SwapiResource {
 
+    FavoritFacade ff;
+
     @Context
     private UriInfo context;
 
@@ -39,6 +43,7 @@ public class SwapiResource {
 
     /**
      * Retrieves representation of an instance of rest.SwapiResource
+     *
      * @return an instance of java.lang.String
      */
     @GET
@@ -59,7 +64,7 @@ public class SwapiResource {
         scan.close();
         return jsonStr;
     }
-    
+
     @GET
     @Path("/person")
     @Produces(MediaType.APPLICATION_JSON)
@@ -78,12 +83,24 @@ public class SwapiResource {
         scan.close();
         return jsonStr;
     }
+
+    @GET
+    @Path("favorit")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getFiveCall() throws IOException {
+        Thread t1 = new GetFive(1);
+        
+        
+        return "";
+    }
     
 
     /**
      * PUT method for updating or creating an instance of SwapiResource
+     *
      * @param content representation for the resource
      */
+    
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(String content) {
