@@ -43,4 +43,7 @@ public class DemoResource {
         String user = securityContext.getUserPrincipal().getName();
         return "\"Hello from ADMIN"+ user+"\"";
     }
+    
+    
+   
 }
