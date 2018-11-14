@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dk.cphbusiness</groupId>
-    <artifactId>CaexamnBackend2018</artifactId>
+    <artifactId>Ca3Backend2018</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>CaExamnBackend2018</name>
+    <name>Ca3Backend2018</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
