@@ -6,7 +6,6 @@
 package rest;
 
 import Threads.GetFive;
-import facade.FavoritFacade;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -29,9 +28,7 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("swapi")
 public class SwapiResource {
-
-    FavoritFacade ff;
-
+    
     @Context
     private UriInfo context;
 
@@ -88,11 +85,16 @@ public class SwapiResource {
     @Path("favorit")
     @Produces(MediaType.APPLICATION_JSON)
     public String getFiveCall() throws IOException {
-        Thread t1 = new GetFive(1);
-        
-        
+
         return "";
     }
+    
+   @GET
+   @Path("/favorit")
+   @Produces(MediaType.APPLICATION_JSON)
+   public String getMyFavorite() throws IOException {
+       return "";
+   }
     
 
     /**

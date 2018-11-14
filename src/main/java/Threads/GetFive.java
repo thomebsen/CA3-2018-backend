@@ -5,7 +5,6 @@
  */
 package Threads;
 
-import facade.FavoritFacade;
 import java.io.IOException;
 
 /**
@@ -14,15 +13,7 @@ import java.io.IOException;
  */
 public class GetFive extends Thread {
     
-    FavoritFacade ff;
-
-    public GetFive() {
-      
-    }
-    public void run(int id) throws IOException{
-        ff.getFavorits(id);
-        
-    }
+    
     
     
 }
