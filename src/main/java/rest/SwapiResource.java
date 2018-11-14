@@ -5,6 +5,7 @@
  */
 package rest;
 
+import facade.FavoritFacade;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -27,6 +28,8 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("swapi")
 public class SwapiResource {
+    
+    FavoritFacade ff = new FavoritFacade();
 
     @Context
     private UriInfo context;
@@ -78,6 +81,13 @@ public class SwapiResource {
         scan.close();
         return jsonStr;
     }
+    
+   @GET
+   @Path("/favorit")
+   @Produces(MediaType.APPLICATION_JSON)
+   public String getMyFavorite() throws IOException {
+       return ff.myFiveCalls();
+   }
     
 
     /**
