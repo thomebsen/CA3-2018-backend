@@ -5,11 +5,12 @@
  */
 package rest;
 
-import facade.FavoritFacade;
+import facade.PeopleFacade;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.Scanner;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -29,8 +30,7 @@ import javax.ws.rs.core.MediaType;
 @Path("swapi")
 public class SwapiResource {
     
-    FavoritFacade ff = new FavoritFacade();
-
+    PeopleFacade pf = new PeopleFacade();
     @Context
     private UriInfo context;
 
@@ -55,14 +55,17 @@ public class SwapiResource {
     @Path("/person")
     @Produces(MediaType.APPLICATION_JSON)
     public String getAllSwapiPeople() throws MalformedURLException, IOException {
-        return ff.getAllSwapiPeople();
+        return pf.getAllSwapiPeople();
     }
     
    @GET
    @Path("/favorit")
    @Produces(MediaType.APPLICATION_JSON)
    public String getMyFavorite() throws IOException {
-       return "lul";
+
+       String jsonStr = pf.myCallable().toString();
+       
+       return jsonStr;
    }
     
 
