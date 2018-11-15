@@ -21,68 +21,22 @@ import java.util.logging.Logger;
  */
 public class FavoritFacade {
 
-    public String myFiveCalls() throws IOException {
-        
-//        ExecutorService es = Executors.newFixedThreadPool(4);
-//
-//        Runnable task1 = () -> {
-//            try {
-//                String person1 = getSwappiData(1);
-//            } catch (IOException ex) {
-//                Logger.getLogger(FavoritFacade.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        };
-//        
-//        Runnable task2 = () -> {
-//            try {
-//                String person2 = getSwappiData(2);
-//            } catch (IOException ex) {
-//                Logger.getLogger(FavoritFacade.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        };
-//        
-//        Runnable task3 = () -> {
-//            try {
-//                String person3 = getSwappiData(3);
-//            } catch (IOException ex) {
-//                Logger.getLogger(FavoritFacade.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        };
-//        
-//        Runnable task4 = () -> {
-//            try {
-//                String person4 = getSwappiData(4);
-//            } catch (IOException ex) {
-//                Logger.getLogger(FavoritFacade.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        };
-//        
-//        Runnable task5 = () -> {
-//            try {
-//                String person5 = getSwappiData(5);
-//            } catch (IOException ex) {
-//                Logger.getLogger(FavoritFacade.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        };
-        
-        String person1 = getSwappiData(1);
-        String person2 = getSwappiData(2);
-        String person3 = getSwappiData(3);
-        String person4 = getSwappiData(4);
-        String person5 = getSwappiData(5);
-
-        String jsonPersons = "["
-                + person1 + ", "
-                + person2 + ", "
-                + person3 + ", "
-                + person4 + ", "
-                + person5
-                + "]";
-
-        return jsonPersons;
-
+    public String getAllSwapiPeople() throws MalformedURLException, IOException {
+        URL url = new URL("https://swapi.co/api/people/");
+        System.out.println(url);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("Accept", "application/json;charset=UTF-8");
+        con.setRequestProperty("User-Agent", "server");
+        Scanner scan = new Scanner(con.getInputStream());
+        String jsonStr = null;
+        if (scan.hasNext()) {
+            jsonStr = scan.nextLine();
+        }
+        scan.close();
+        return jsonStr;
     }
-
+    
     public String getSwappiData(int id) throws MalformedURLException, IOException {
         URL url = new URL("https://swapi.co/api/people/" + id);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
