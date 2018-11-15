@@ -48,19 +48,7 @@ public class SwapiResource {
     @Path("/person/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public String getSwapiPeople(@PathParam("id") int id) throws MalformedURLException, IOException {
-        URL url = new URL("https://swapi.co/api/people/" + id);
-        System.out.println(url);
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("GET");
-        con.setRequestProperty("Accept", "application/json;charset=UTF-8");
-        con.setRequestProperty("User-Agent", "server");
-        Scanner scan = new Scanner(con.getInputStream());
-        String jsonStr = null;
-        if (scan.hasNext()) {
-            jsonStr = scan.nextLine();
-        }
-        scan.close();
-        return jsonStr;
+        return ff.getSwappiData(id);
     }
     
     @GET
