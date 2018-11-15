@@ -48,7 +48,7 @@ public class SwapiResource {
     @Path("/person/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public String getSwapiPeople(@PathParam("id") int id) throws MalformedURLException, IOException {
-        return ff.getSwappiData(id);
+        return pf.getSwappiData(id);
     }
     
     @GET
