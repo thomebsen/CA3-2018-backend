@@ -62,7 +62,7 @@ public class PeopleFacade {
         List<String> Data = new ArrayList<>();
         ExecutorService es = Executors.newFixedThreadPool(4);
         List<Future<String>> list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             Callable<String> callable = new FiveFacade(1);
             Future<String> future = es.submit(callable);
             list.add(future);
