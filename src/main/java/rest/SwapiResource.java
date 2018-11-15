@@ -6,10 +6,13 @@
 package rest;
 
 import Threads.GetFive;
+import facade.FiveFacade;
+import facade.ThreadFacade;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.Scanner;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -28,6 +31,8 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("swapi")
 public class SwapiResource {
+    
+    ThreadFacade TF;
     
     @Context
     private UriInfo context;
@@ -84,9 +89,9 @@ public class SwapiResource {
     @GET
     @Path("favorit")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getFiveCall() throws IOException {
-
-        return "";
+    public List<String> getFiveCall() throws IOException {
+        return TF.myCallable();
+        
     }
     
    @GET
