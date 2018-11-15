@@ -5,9 +5,7 @@
  */
 package rest;
 
-import Threads.GetFive;
-import facade.FiveFacade;
-import facade.ThreadFacade;
+import facade.PeopleFacade;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -32,8 +30,7 @@ import javax.ws.rs.core.MediaType;
 @Path("swapi")
 public class SwapiResource {
     
-    ThreadFacade TF;
-    
+    PeopleFacade pf = new PeopleFacade();
     @Context
     private UriInfo context;
 
@@ -45,7 +42,6 @@ public class SwapiResource {
 
     /**
      * Retrieves representation of an instance of rest.SwapiResource
-     *
      * @return an instance of java.lang.String
      */
     @GET
@@ -66,48 +62,29 @@ public class SwapiResource {
         scan.close();
         return jsonStr;
     }
-
+    
     @GET
     @Path("/person")
     @Produces(MediaType.APPLICATION_JSON)
     public String getAllSwapiPeople() throws MalformedURLException, IOException {
-        URL url = new URL("https://swapi.co/api/people/");
-        System.out.println(url);
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("GET");
-        con.setRequestProperty("Accept", "application/json;charset=UTF-8");
-        con.setRequestProperty("User-Agent", "server");
-        Scanner scan = new Scanner(con.getInputStream());
-        String jsonStr = null;
-        if (scan.hasNext()) {
-            jsonStr = scan.nextLine();
-        }
-        scan.close();
-        return jsonStr;
-    }
-
-    @GET
-    @Path("favorit")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<String> getFiveCall() throws IOException {
-        return TF.myCallable();
-        
+        return pf.getAllSwapiPeople();
     }
     
    @GET
    @Path("/favorit")
    @Produces(MediaType.APPLICATION_JSON)
    public String getMyFavorite() throws IOException {
-       return "";
+
+       String jsonStr = pf.myCallable().toString();
+       
+       return jsonStr;
    }
     
 
     /**
      * PUT method for updating or creating an instance of SwapiResource
-     *
      * @param content representation for the resource
      */
-    
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(String content) {
