@@ -8,6 +8,7 @@ package rest;
 import facade.PeopleFacade;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -60,7 +61,7 @@ public class SwapiResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getMyFavorite() throws IOException {
 
-        String jsonStr = pf.getFavoritesCharacters().toString();
+        String jsonStr = pf.getFavoriteCharacters().toString();
 
         return jsonStr;
     }

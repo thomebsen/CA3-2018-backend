@@ -58,7 +58,7 @@ public class PeopleFacade {
     }
 
 
-    public static List<String> getFavoritesCharacters() {
+    public static List<String> getFavoriteCharacters() {
         List<String> Data = new ArrayList<>();
         ExecutorService es = Executors.newFixedThreadPool(4);
         List<Future<String>> list = new ArrayList<>();
