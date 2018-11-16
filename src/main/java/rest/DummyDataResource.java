@@ -5,6 +5,8 @@
  */
 package rest;
 
+import com.google.gson.Gson;
+import facade.DummyDataFacade;
 import facade.PeopleFacade;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -27,45 +29,27 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Andreas
  */
-@Path("swapi")
-public class SwapiResource {
+@Path("dummy")
+public class DummyDataResource {
+    DummyDataFacade ddf = new DummyDataFacade();
+    Gson gson = new Gson();
     
-    PeopleFacade pf = new PeopleFacade();
+    
     @Context
     private UriInfo context;
 
     /**
      * Creates a new instance of SwapiResource
      */
-    public SwapiResource() {
-    }
-
-    /**
-     * Retrieves representation of an instance of rest.SwapiResource
-     * @return an instance of java.lang.String
-     */
-    @GET
-    @Path("/person/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public String getSwapiPeople(@PathParam("id") int id) throws MalformedURLException, IOException {
-        return pf.getSwappiData(id);
+    public DummyDataResource() {
     }
     
-    @GET
-    @Path("/person")
-    @Produces(MediaType.APPLICATION_JSON)
-    public String getAllSwapiPeople() throws MalformedURLException, IOException {
-        return pf.getAllSwapiPeople();
-    }
     
-   @GET
-   @Path("/favorit")
-   @Produces(MediaType.APPLICATION_JSON)
-   public String getMyFavorite() throws IOException {
-
-       String jsonStr = pf.myCallable().toString();       
-       return jsonStr;
-   }
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getAllItems() {
+        return gson.toJson(ddf.getAllDummyPersons());
+    }
     
 
     /**
