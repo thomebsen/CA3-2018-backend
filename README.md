@@ -13,8 +13,8 @@ Native-app:	https://github.com/Zenzus/CA3-2018-native
   1. Connect to our remote database:
     - Create a Persistence Unit and make it connect to the remote database with these settings:
     
-    url: 138.68.73.7/remoteDB
-    user: testuser
+    url: 138.68.73.7/remoteDB <br>
+    user: testuser <br>
     password: kode1234
     
   2. Create your own database
