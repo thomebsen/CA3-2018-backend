@@ -10,11 +10,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.internal.GsonBuildConfig;
 import facade.PeopleFacade;
 import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
-import java.util.Scanner;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -32,7 +29,7 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("swapi")
 public class SwapiResource {
-    
+
     PeopleFacade pf = new PeopleFacade();
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     @Context
@@ -46,35 +43,36 @@ public class SwapiResource {
 
     /**
      * Retrieves representation of an instance of rest.SwapiResource
+     *
      * @return an instance of java.lang.String
      */
     @GET
     @Path("/person/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public String getSwapiPeople(@PathParam("id") int id) throws MalformedURLException, IOException {
-        return pf.getSwappiData(id);
+        return pf.getSwapiCharacter(id);
     }
-    
+
     @GET
     @Path("/person")
     @Produces(MediaType.APPLICATION_JSON)
     public String getAllSwapiPeople() throws MalformedURLException, IOException {
         return pf.getAllSwapiPeople();
     }
-    
-   @GET
-   @Path("/favorit")
-   @Produces(MediaType.APPLICATION_JSON)
-   public String getMyFavorite() throws IOException {
 
-       String jsonStr = gson.toJson(pf.myCallable()) ;
-       
-       return jsonStr;
-   }
-    
+    @GET
+    @Path("/favorit")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getMyFavorite() throws IOException {
+
+        String jsonStr = pf.getFavoritesCharacters().toString();
+
+        return jsonStr;
+    }
 
     /**
      * PUT method for updating or creating an instance of SwapiResource
+     *
      * @param content representation for the resource
      */
     @PUT

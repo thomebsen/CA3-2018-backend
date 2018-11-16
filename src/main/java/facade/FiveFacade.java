@@ -17,16 +17,18 @@ import java.util.concurrent.Callable;
  * @author Andreas
  */
 public class FiveFacade implements Callable<String> {
-      int id;
+
+
+    int id;
 
     public FiveFacade(int id) {
         this.id = id;
     }
-     
+
     @Override
     public String call() throws Exception {
 
-        URL url = new URL("https://swapi.co/api/people/"+id);
+        URL url = new URL("https://swapi.co/api/people/" + id);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("Accept", "application/json;charset=UTF-8");
@@ -39,5 +41,5 @@ public class FiveFacade implements Callable<String> {
         scan.close();
         return jsonStr;
     }
- 
+
 }
