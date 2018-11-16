@@ -42,7 +42,7 @@ public class PeopleFacade {
         return jsonStr;
     }
 
-    public String getSwappiData(int id) throws MalformedURLException, IOException {
+    public String getSwapiCharacter(int id) throws MalformedURLException, IOException {
         URL url = new URL("https://swapi.co/api/people/" + id);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
@@ -58,7 +58,7 @@ public class PeopleFacade {
     }
 
 
-    public static List<String> myCallable() {
+    public static List<String> getFavoritesCharacters() {
         List<String> Data = new ArrayList<>();
         ExecutorService es = Executors.newFixedThreadPool(4);
         List<Future<String>> list = new ArrayList<>();
@@ -76,6 +76,7 @@ public class PeopleFacade {
                 e.printStackTrace();
             }
         }
+        
         return Data;
     }
 

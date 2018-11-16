@@ -41,8 +41,8 @@ public class DemoResource {
     @Path("admin")
     @RolesAllowed("admin")
     public String getFromAdmin() {
-        String user = securityContext.getUserPrincipal().getName();
-        return "\"Hello from ADMIN"+ user+"\"";
+        String user = securityContext.getUserPrincipal().toString();
+        return "\"Hello from ADMIN: "+ user+"\"";
         
     }
     
