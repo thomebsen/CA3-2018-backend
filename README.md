@@ -2,7 +2,7 @@
 
 This backend-project is made to work with the following projects:
 
-Frontend:	https://github.com/Srax/CA3-2018-frontend
+Frontend:	https://github.com/Srax/CA3-2018-frontend <br>
 Native-app:	https://github.com/Zenzus/CA3-2018-native
 
 <h3>Getting started:</h3>
