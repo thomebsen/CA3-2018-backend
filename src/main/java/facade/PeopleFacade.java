@@ -58,11 +58,11 @@ public class PeopleFacade {
     }
 
 
-    public static List<String> getFavoriteCharacters() {
+    public static List<String> getFavoritesCharacters() {
         List<String> Data = new ArrayList<>();
         ExecutorService es = Executors.newFixedThreadPool(4);
         List<Future<String>> list = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i <= 5; i++) {
             Callable<String> callable = new FiveFacade(i);
             Future<String> future = es.submit(callable);
             list.add(future);
@@ -76,6 +76,7 @@ public class PeopleFacade {
                 e.printStackTrace();
             }
         }
+        
         return Data;
     }
 

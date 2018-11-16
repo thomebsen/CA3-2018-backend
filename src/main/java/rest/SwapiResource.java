@@ -5,6 +5,9 @@
  */
 package rest;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.internal.GsonBuildConfig;
 import facade.PeopleFacade;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -28,6 +31,7 @@ import javax.ws.rs.core.MediaType;
 public class SwapiResource {
 
     PeopleFacade pf = new PeopleFacade();
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
     @Context
     private UriInfo context;
 
@@ -61,7 +65,7 @@ public class SwapiResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getMyFavorite() throws IOException {
 
-        String jsonStr = pf.getFavoriteCharacters().toString();
+        String jsonStr = pf.getFavoritesCharacters().toString();
 
         return jsonStr;
     }
