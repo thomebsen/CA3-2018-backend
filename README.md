@@ -24,3 +24,4 @@ Native-app:	https://github.com/Zenzus/CA3-2018-native
     - Populate the database with by running the “SetupTestUsers”-class in the “utils”-package.
 
 - Run the project and keep the server running to let the frontend and native-app work properly.
+# SemPro-2018-Backend
